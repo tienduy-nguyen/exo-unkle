@@ -9,7 +9,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
 
       t.string :first_name
       t.string :last_name
-      t.integer :phone
+      t.string :phone
       t.string :address
       t.boolean :is_admin
 
