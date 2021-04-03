@@ -11,6 +11,7 @@ There are two choices of languages to start working with this exercise: JavaScri
 
 But I think it will be more interesting if I convert this component to npm package. So finally I choose work directly with TypeScript because its strong type.
 
+### Development
 
 So how I created this tooltip component? `directly method` & `npm package method`
 
@@ -84,9 +85,12 @@ So how I created this tooltip component? `directly method` & `npm package method
 
   - You can also check [my project example](https://github.com/tienduy-nguyen/exo-unkle/tree/main/npm-tooltip/example)
 
-  Still missing testing. 
+### Todo
+- [ ] Still missing testing. 
 
 ## Backend exo
+
+Insurance agency
 
 ### Database design
   ![database](database.png)
@@ -99,4 +103,64 @@ So how I created this tooltip component? `directly method` & `npm package method
 
     In rails active record association, we have a type `has_and_belongs_to_many` to resolve many-to-many relationship, but working directly with an join table make always the life easier. 
 
+### Features
+
+- `Database with PostgreSQL`: I always prefer using directly postgresql for development, even for the simple project, because we can profit a lot of good things with database management tool: `PgAdmin4`. 
+  
+- `Authentication` with `devise-jwt`. Devise gems cover any thing for authentication as sign in, signup, email verification, recover password ...
+
+But in this exo, I just make a minimalist demo, so I just profit the login/register function of devise and json web token with devise-jwt.
+
+- `Query & mutations sql`: using both active record rails features & `raw sql` for complex query. Using transaction to make a safe mutation when write data to our database.
+
+### Development
+
+Make sure you have rails installed on your machine. I used `rails 6.0.3` for development.
+
+```bash
+$ cd backend
+$ bundle install
+$ rails server
+```
+
+Then you can you `Postman` or `Insomnia` to make the REST API request from the routes below. Or maybe  you can use request with `curl` directly.
+
+The server will run at: `http://localhost:4120`
+
+I use jwt for auth header. After logged in, you will receive an auth header : `Authorization` : `Bearer ejwtdflmdsupŝdfqsdfqsdfj (token)`
+
+With that token, you can copy and add it at the request header of other routes to make request from private routes.
 ### Routes
+
+- Admin only
+  - GET `/api/users`: get user list
+  - POST `/api/users`: create admin or client
+  - PUT/PATCH `/api/users/:id`: update all related information of one user (isAdmin included)
+  - DELETE `/api/users/:id`: destroy user
+  - -----------------
+  - GET `/api/options`: get all type of insurance options
+  - POST `/api/options`: create an insurance option
+  - PUT/PATCH `/api/options/:id`: update an insurance option
+  - DELETE `/api/options/:id`: destroy user
+  - -----------------
+  - GET `/api/contracts`: get all contracts with pagination, if you specify query string url `?user_id=<some_user_id>`, the result will show only the contracts subscribed by that user
+  - POST `/api/contracts`: create an contract
+  - PUT/PATCH `/api/contracts/:id`: update an contract
+  - DELETE `/api/contracts/:id`: destroy contract
+  - ----
+  If you don't want use query string url (?param=), you can make request like:
+  - GET `/api/users/:id/contracts`: get only contracts signed by user
+
+- Admin & client
+  - GET `api/users/:id`: get current user info
+
+- Public route: home page `/`
+
+### Params for request
+
+That's better using open api document: with `rswag-api`(rswag gem) or `grape-swagger`
+--> To do
+### Todo
+- [ ] Update testing
+- [ ] Update API documentation with rswag
+- [ ] Mailer

@@ -64,8 +64,8 @@ chrome-user-data
 *.swp
 *.swo
 
-.env
-*.local
-.env.development
-.env.production
-.env.test
+# .env
+# *.local
+# .env.development
+# .env.production
+# .env.test
