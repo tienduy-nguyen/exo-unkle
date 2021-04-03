@@ -87,3 +87,16 @@ So how I created this tooltip component? `directly method` & `npm package method
   Still missing testing. 
 
 ## Backend exo
+
+### Database design
+  ![database](database.png)
+
+  - By default of this exercise, we have 3 tables principles: users, contracts and options
+  - Table users has 2 different types: `admin` & `client`
+  - Why I have two join tables more?
+
+    Because 1 `client` has many `contracts`, 1 contract has many `clients` (N-N relationship)and the same for `options` and `contracts` table (N-N). So I think the best way to handle relationship (read, write) between these tables is creating the join tables for them.
+
+    In rails active record association, we have a type `has_and_belongs_to_many` to resolve many-to-many relationship, but working directly with an join table make always the life easier. 
+
+### Routes
