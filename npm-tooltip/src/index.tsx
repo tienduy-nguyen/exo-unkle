@@ -7,6 +7,7 @@ interface TooltipProps {
   delay?: number;
   background?: string;
   color?: string;
+  fontSize?: string;
 }
 export const Tooltip: React.FC<TooltipProps> = ({
   content,
@@ -14,6 +15,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   delay = 200,
   background = '#333',
   color = '#fff',
+  fontSize = '1rem',
   children,
 }) => {
   const [show, setShow] = useState(false);
@@ -59,6 +61,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
             style={{
               background: `${background}`,
               color: `${color}`,
+              fontSize: `${fontSize}`,
             }}
           >
             {content}

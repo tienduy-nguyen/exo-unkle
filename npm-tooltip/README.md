@@ -36,9 +36,11 @@ Lightweight React tooltips, full TypeScript support
 
 - Options of tooltips
   - content (*): Text display for tooltip
-  - direction (*): position of tooltip box
-  - delay: Time delay en millisecond before displaying (default 0 ms)
-  - background: background of tooltip box (default black - #333)
-  - color: color of text, default white
+  - direction (*): position of tooltip box: `top - bottom - right - left`
+  - delay: Time delay en millisecond before displaying (time default `0` ms)
+  - background: background of tooltip box (color default `black` - #333)
+  - color: color of text, color default `white`
+  - fontSize: default `1rem`
 
-- Project example: Check to Vite.js project in [github repo](https://tienduy-nguyen/exo-unkle/npm-tooltip/example)
+- See project example to understand better how it works: Check to Vite.js project in [github repo](https://tienduy-nguyen/exo-unkle/npm-tooltip/example)
+
