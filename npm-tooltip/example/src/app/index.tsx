@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tooltip } from './components/Tooltip';
+import { Tooltip } from 'td-react-tooltip';
 
 export function App() {
   return (
