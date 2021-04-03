@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { pseudoTooltip } from './PseudoElement';
 
 interface TooltipProps {
   content: string;
@@ -29,22 +30,12 @@ export const Tooltip: React.FC<TooltipProps> = ({
     }, delay || 0);
   };
 
-  const psodoElement = ()=>{
-
-  }
-
   return (
     <div className="tooltip-wrapper" onMouseEnter={showTip} onMouseLeave={hitTip}>
       <>{children}</>
       {show && (
         <>
-          {/* ::before */}
-         {direction ='right' ? (
-
-         )}
-
-
-
+          {pseudoTooltip(background, direction)}
           <div
             className={`tooltip-tip ${direction}`}
             style={{
