@@ -14,4 +14,98 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #f3f8fa;
+  display: -ms-grid;
+  display: grid;
+  width: 100%;
+  min-height: 90vh;
+}
+
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container {
+  max-width: 1400px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container.medium {
+  width: 992px;
+}
+
+.container.small {
+  width: 768px;
+}
+
+.d-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.justify-between {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mt-5 {
+  margin-top: 5rem;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.mt-2 {
+  margin-top: 3rem;
+}
+
+.btn {
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  min-width: 10rem;
+  max-width: 100%;
+  border: 0;
+  padding: 1.5rem 2rem;
+  border-radius: 1.625rem;
+  -webkit-box-shadow: 0 9px 18px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 9px 18px rgba(0, 0, 0, 0.2);
+  background: #282936;
+  color: white;
+}
+
+.btn.btn-primary {
+  background: #282936;
+  color: white;
 }
