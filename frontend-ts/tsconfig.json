@@ -1,20 +1,25 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "types": ["vite/client"],
-    "allowJs": false,
+    "target": "esnext",
+    "lib": ["DOM", "DOM.Iterable", "esnext"],
+    "typeRoots": ["./node_modules/@types", "src/@types"],
+    "types": ["vite/client", "node"],
+    "allowJs": true,
     "skipLibCheck": false,
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
+    "module": "esnext",
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "sourceMap": false,
     "noEmit": true,
-    "jsx": "react"
+    "jsx": "react-jsx",
+    "baseUrl": "./",
+    "noFallthroughCasesInSwitch": true
   },
-  "include": ["./src"]
+  "include": ["./src", "vite.config.ts"],
+  "exclude": ["__mocks__", "__test__"]
 }
