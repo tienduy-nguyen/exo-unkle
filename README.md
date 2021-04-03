@@ -133,10 +133,9 @@ I use jwt for auth header. After logged in, you will receive an auth header : `A
 With that token, you can copy and add it at the request header of other routes to make request from private routes.
 
 - Seeding 
-  Create database `exo_unkle_dev` in your postgresql
-
-  then run seeding
+  Make sure create database before run seeding.
   ```bash
+  $ rails db:create
   $ rails db:seed
   ```
   **Note:** If you have some issues when connect postgresql, you can just give an `user` & `password` of your postgresql local in `.env` file:
