@@ -13,7 +13,7 @@
   "dependencies": {
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "td-react-tooltip": "^1.0.2"
+    "td-react-tooltip": "^1.0.4"
   },
   "devDependencies": {
     "@rollup/plugin-eslint": "^8.0.1",

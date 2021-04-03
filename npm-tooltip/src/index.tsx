@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import 'src/assets/css/style.css';
+import './style.scss';
 
 interface TooltipProps {
   content: string;
