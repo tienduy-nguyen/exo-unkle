@@ -1,0 +1,2 @@
+class ClientContract < ApplicationRecord
+end
