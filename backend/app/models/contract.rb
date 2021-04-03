@@ -4,6 +4,8 @@ class Contract < ApplicationRecord
   # enum status: [:pending, :active, :finished]
   has_many :client_contracts
   has_many :clients, through: :client_contracts
+  has_many :option_contracts
+  has_many :options, through: :options_contracts
 
   # call back
   before_create :set_default_value

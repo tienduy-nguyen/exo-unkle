@@ -5,6 +5,17 @@ Rails.application.routes.draw do
     resources :users
     resources :contracts
     resources :options
+
+    resources :users do
+      resources :contracts, only: [:index]
+    end
+    resources :options do
+      resources :contracts, only: [:index]
+    end
+    resources :contracts do
+      resources :options, only: [:index]
+      resources :users, only: [:index]
+    end
   end
 
   devise_for :users,
