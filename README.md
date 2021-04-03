@@ -111,7 +111,7 @@ Insurance agency
 
 But in this exo, I just make a minimalist demo, so I just profit the login/register function of devise and json web token with devise-jwt.
 
-- `Query & mutations sql`: using both active record rails features & `raw sql` for complex query. Using transaction to make a safe mutation when write data to our database.
+- `Query & mutations sql`: Using transaction to make a safe mutation when write data to our database.
 
 ### Development
 
