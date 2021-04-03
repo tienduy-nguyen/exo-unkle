@@ -10,15 +10,67 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_03_194341) do
+ActiveRecord::Schema.define(version: 2021_04_03_201748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "client_contracts", force: :cascade do |t|
+    t.bigint "client_id"
+    t.bigint "contract_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["client_id"], name: "index_client_contracts_on_client_id"
+    t.index ["contract_id"], name: "index_client_contracts_on_contract_id"
+  end
+
+  create_table "contracts", force: :cascade do |t|
+    t.integer "number"
+    t.string "status"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string "created_by"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "jwt_denylist", force: :cascade do |t|
     t.string "jti", null: false
     t.datetime "exp", null: false
     t.index ["jti"], name: "index_jwt_denylist_on_jti"
+  end
+
+  create_table "option_contracts", force: :cascade do |t|
+    t.bigint "option_id"
+    t.bigint "contract_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["contract_id"], name: "index_option_contracts_on_contract_id"
+    t.index ["option_id"], name: "index_option_contracts_on_option_id"
+  end
+
+  create_table "options", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "phone"
+    t.string "address"
+    t.boolean "is_admin"
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end
