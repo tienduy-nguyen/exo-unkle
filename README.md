@@ -12,7 +12,8 @@ There are two choices of languages to start working with this exercise: JavaScri
 But I think it will be more interesting if I convert this component to npm package. So finally I choose work directly with TypeScript because its strong type.
 
 
-So how I created this tooltip component?
+So how I created this tooltip component? `directly method` & `npm package method`
+
 - Directly tooltips component in react project:
   - First of all, I worked directly with React framework Vitejs (It's very fast compile & build, much much better than using react-script). And I create tooltip components directly in this project.
   - You can find the final work of this project at branch: [frontend-ts](https://github.com/tienduy-nguyen/exo-unkle)
@@ -36,7 +37,8 @@ So how I created this tooltip component?
     ![tooltip demo](./tooltip.png)
 
 - Npm package: `td-react-tooltip`
-  Above I showed how I created the tooltip component directly in React Project. Now, I use `rollup package` to convert and publish this components to become a `npm package`.
+  
+  I just showed how I created the tooltip component directly in React Project. Now, I use `rollup package` to convert and publish this components to become a `npm package`.
 
   The source code is directly on [main branch](https://github.com/tienduy-nguyen/exo-unkle). 
 
@@ -82,5 +84,6 @@ So how I created this tooltip component?
 
   - You can also check [my project example](https://github.com/tienduy-nguyen/exo-unkle/tree/main/npm-tooltip/example)
 
+  Still missing testing. 
 
 ## Backend exo
