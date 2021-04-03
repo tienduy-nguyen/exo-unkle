@@ -1,0 +1,43 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  max-width: 1400px;
+  justify-content: center;
+  align-items: center;
+}
+.container.medium {
+  width: 992px;
+}
+.container.small {
+  width: 768px;
+}
+
+.d-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.text-center {
+  text-align: center;
+}
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mt-5 {
+  margin-top: 5rem;
+}
+.mt-2 {
+  margin-top: 2rem;
+}
+.mt-2 {
+  margin-top: 3rem;
+}

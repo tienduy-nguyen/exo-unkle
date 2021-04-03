@@ -1,0 +1,25 @@
+// system file
+*.log
+.DS_Store*
+.idea/
+
+// specific files
+node_modules/
+example/
+test/
+bin/
+CHANGELOG.md
+src/
+scss/
+src/assets/scss/
+dist/
+build
+
+// setting files
+.babelrc
+.travis.yml
+.gitignore
+.prettierrc
+rollup.config.js
+tsconfig.json
+.babelrc

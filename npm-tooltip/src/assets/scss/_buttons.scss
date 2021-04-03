@@ -1,0 +1,17 @@
+.btn {
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  min-width: 10rem;
+  max-width: 100%;
+  border: 0;
+  padding: 1.5rem 2rem;
+  border-radius: 1.625rem;
+  box-shadow: 0 9px 18px rgba(0, 0, 0, 0.2);
+  background: $bg-buttons;
+  color: white;
+}
+.btn.btn-primary {
+  background: $bg-buttons;
+  color: white;
+}
