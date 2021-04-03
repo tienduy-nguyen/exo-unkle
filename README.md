@@ -160,13 +160,15 @@ With that token, you can copy and add it at the request header of other routes t
   - PUT/PATCH `/api/options/:id`: update an insurance option
   - DELETE `/api/options/:id`: destroy user
   - -----------------
-  - GET `/api/contracts`: get all contracts with pagination, if you specify query string url `?user_id=<some_user_id>`, the result will show only the contracts subscribed by that user
+  - GET `/api/contracts`: get all contracts with pagination, if you specify query string url `?user_id=<some_user_id>`, the result will show only the contracts subscribed by that use. Same way for `/api/options?formation_id?=...` or `/api/formations?option_id=...`
   - POST `/api/contracts`: create an contract
   - PUT/PATCH `/api/contracts/:id`: update an contract
   - DELETE `/api/contracts/:id`: destroy contract
   - ----
   If you don't want use query string url (?param=), you can make request like:
   - GET `/api/users/:id/contracts`: get only contracts signed by user
+  - GET `/api/options/:id/contracts`: get contracts from insurance option
+  - GET `/api/contracts/:id/options`: get insurance options from contracts
 
 - Admin & client
   - GET `api/users/:id`: get current user info
