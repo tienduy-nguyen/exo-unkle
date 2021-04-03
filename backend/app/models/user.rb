@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
 
+  before_create :set_default_value
+
   # Associations
   has_many :client_contracts, dependent: :destroy
   has_many :contracts, through: :client_contracts
@@ -23,5 +25,11 @@ class User < ApplicationRecord
     else
       return "#{self.first_name.capitalize unless self.first_name.nil?} #{self.last_name.capitalize unless self.last_name.nil?}"
     end
+  end
+
+  private
+
+  def set_default_value
+    self.is_admin = false if self.is_admin.nil? || self.is_admin.blank?
   end
 end

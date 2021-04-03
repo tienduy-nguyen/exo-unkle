@@ -68,10 +68,12 @@ end
 puts "options created!"
 
 100.times do |i|
-  pre_constract = Contract.create(start_date: Time.now, created_by: admin.full_name)
-  OptionContract.create(option_id: Option.all.sample, contract_id: pre_constract.id)
+  pre_contract = Contract.create(
+    start_date: Time.now, created_by: admin.full_name,
+  )
+  OptionContract.create(option_id: Option.all.sample, contract_id: pre_contract.id)
   3.times do |c|
-    ClientContract.create(client_id: User.all.sample, contract_id: pre_constract.id)
+    ClientContract.create(client_id: User.all.sample, contract_id: pre_contract.id)
   end
 end
 puts "100 contracts created!"

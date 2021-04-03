@@ -3,14 +3,15 @@ require "securerandom"
 class Contract < ApplicationRecord
   # enum status: [:pending, :active, :finished]
   has_many :client_contracts
-  has_many :clients, class_name: "User", through: :client_contracts
+  has_many :clients, through: :client_contracts
 
   # call back
   before_create :set_default_value
   before_save :end_date_when_status_finished, if: :status_changed?
+  before_create :create_auto_number
 
   # Validation
-  validates :number, presence: true, uniqueness: true
+  # validates :number, presence: true, uniqueness: true
   validates :start_date, presence: true
   validates :created_by, presence: true
 
@@ -38,11 +39,9 @@ class Contract < ApplicationRecord
   end
 
   def set_default_value
-    create_auto_number
-    self.is_admin = false if self.is_admin.nil?
     self.status = "pending"
 
-    if self.start_date.to_date < Time.now.to_date
+    if self.start_date.to_date <= Time.now.to_date
       self.start_date = Time.now
       self.status = "active"
     end

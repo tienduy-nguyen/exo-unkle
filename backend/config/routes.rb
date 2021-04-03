@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   default_url_options :host => "http://localhost:4120/"
   namespace :api, defaults: { format: :json } do
     resources :users
+    resources :contracts
+    resources :options
   end
 
   devise_for :users,
