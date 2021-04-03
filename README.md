@@ -121,6 +121,7 @@ Make sure you have rails installed on your machine. I used `rails 6.0.3` for dev
 $ cd backend
 $ bundle install
 $ rails server
+
 ```
 
 Then you can you `Postman` or `Insomnia` to make the REST API request from the routes below. Or maybe  you can use request with `curl` directly.
@@ -130,6 +131,23 @@ The server will run at: `http://localhost:4120`
 I use jwt for auth header. After logged in, you will receive an auth header : `Authorization` : `Bearer ejwtdflmdsupŝdfqsdfqsdfj (token)`
 
 With that token, you can copy and add it at the request header of other routes to make request from private routes.
+
+- Seeding 
+  Create database `exo_unkle_dev` in your postgresql
+
+  then run seeding
+  ```bash
+  $ rails db:seed
+  ```
+  **Note:** If you have some issues when connect postgresql, you can just give an `user` & `password` of your postgresql local in `.env` file:
+  For example, my postgres user:
+
+  ```
+  # .env file
+  DB_HOST=localhost
+  DB_USERNAME=postgres
+  DB_PASSWORD=postgres
+  ``` 
 ### Routes
 
 - Admin only
@@ -164,3 +182,4 @@ That's better using open api document: with `rswag-api`(rswag gem) or `grape-swa
 - [ ] Update testing
 - [ ] Update API documentation with rswag
 - [ ] Mailer
+- [ ] Wana using docker to run postgresql?
