@@ -35,6 +35,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
       <>{children}</>
       {show && (
         <>
+          {/* pseudo */}
           {pseudoTooltip(background, direction)}
           <div
             className={`tooltip-tip ${direction}`}
