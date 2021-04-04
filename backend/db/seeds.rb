@@ -12,12 +12,6 @@ Contract.destroy_all
 OptionContract.destroy_all
 ClientContract.destroy_all
 
-ActiveRecord::Base.connection.reset_pk_sequence!(User)
-ActiveRecord::Base.connection.reset_pk_sequence!(Option)
-ActiveRecord::Base.connection.reset_pk_sequence!(Contract)
-ActiveRecord::Base.connection.reset_pk_sequence!(OptionContract)
-ActiveRecord::Base.connection.reset_pk_sequence!(ClientContract)
-
 # Create some fake user
 50.times do
   User.create(
@@ -71,9 +65,9 @@ puts "options created!"
   pre_contract = Contract.create(
     start_date: Time.now, created_by: admin.full_name,
   )
-  OptionContract.create(option_id: Option.all.sample, contract_id: pre_contract.id)
+  OptionContract.create(option_id: Option.all.sample.id, contract_id: pre_contract.id)
   3.times do |c|
-    ClientContract.create(client_id: User.all.sample, contract_id: pre_contract.id)
+    ClientContract.create(client_id: User.all.sample.id, contract_id: pre_contract.id)
   end
 end
 puts "100 contracts created!"

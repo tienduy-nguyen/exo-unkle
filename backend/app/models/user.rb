@@ -7,8 +7,8 @@ class User < ApplicationRecord
   before_create :set_default_value
 
   # Associations
-  has_many :client_contracts, dependent: :destroy
-  has_many :contracts, through: :client_contracts
+  has_many :client_contracts, dependent: :destroy, foreign_key: :client_id
+  has_many :contracts, through: :client_contracts, foreign_key: :client_id
 
   # Validations
   validates :email,

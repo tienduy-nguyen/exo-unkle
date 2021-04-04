@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   default_url_options :host => "http://localhost:4120/"
   namespace :api, defaults: { format: :json } do
+    get "/auth/me", to: "users#me", as: "me"
+
     resources :users
     resources :contracts
     resources :options
