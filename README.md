@@ -111,7 +111,8 @@ Insurance agency
 
 But in this exo, I just make a minimalist demo, so I just profit the login/register function of devise and json web token with devise-jwt.
 
-- `Query & mutations sql`: Using transaction to make a safe mutation when write data to our database.
+- `Query & mutations sql`: Using rails active record and `raw query` SQL for better performance. Also using transaction to make a safe mutation when write data to our database.
+- Cron job to check & update daily status of contract with gem `whenever`
 
 ### Development
 
