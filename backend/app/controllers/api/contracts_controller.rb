@@ -50,35 +50,41 @@ class Api::ContractsController < ApplicationController
     @contract.start_date = contract_params[:start_date]
 
     # try-catch error
-    begin
-      ActiveRecord::Base.transaction do
-        if @contract.save
-          options = contract_params[:options]
 
-          # check if options empty
-          if options.nil? || options.blank? || options.length <= 0
-            raise ActiveRecord::Rollback
-            return render json: { error: "Options is required", status: 500 }, status: :unprocessable_entity
-          end
-
-          # create option_contract
-          options.each do |option_id|
-            # ensure option_id given is exact
-            id = Option.find(option_id).id
-            OptionContract.create(contract_id: @contract.id, option_id: id)
-          end
-
-          # create client_contract
-          client_id = User.find(contract_params[:client_id]).id
-          ClientContract.create(client_id: client_id, contract_id: @contract.id)
-
-          return render json: @contract
-        else
-          return render json: @contract.errors, status: :unprocessable_entity
+    ActiveRecord::Base.transaction do
+      if @contract.save
+        options = params[:options]
+        # check if options empty
+        if options.nil? || options.blank? || options.length <= 0
+          render json: { error: "Options is required", status: 500 }, status: :unprocessable_entity
+          raise ActiveRecord::Rollback
         end
+
+        # create option_contract
+        options.each do |option_id|
+          # ensure option_id given is exact
+          id = Option.find(option_id).id
+          OptionContract.create(contract_id: @contract.id, option_id: id)
+        end
+
+        clients = params[:clients]
+        # check if options empty
+        if clients.nil? || clients.blank? || clients.length <= 0
+          render json: { error: "Clients is required", status: 500 }, status: :unprocessable_entity
+          raise ActiveRecord::Rollback
+        end
+
+        # create client_contract
+        clients.each do |client_id|
+          # ensure client_id given is exact
+          id = User.find(client_id).id
+          ClientContract.create(contract_id: @contract.id, client_id: id)
+        end
+
+        return render json: @contract
+      else
+        return render json: @contract.errors, status: :unprocessable_entity
       end
-    rescue => exception
-      render json: { error: exception, status: 500 }, status: :unprocessable_entity
     end
   end
 
@@ -114,9 +120,20 @@ class Api::ContractsController < ApplicationController
   def contract_params
     params.require(:contract)
       .permit(:status,
-              :start_date, :end_date, :created_by,
-              :client_id, :options)
+              :start_date, :end_date, :created_by)
+
+    # we will have two params externe
     #:options is array of option_id, ex: [1,5,3,6]
+    #:clients is array of client_id, ex: [1,5,3,6]
+    # ex: params to create an contract {
+    #   "contract":{
+    #     "start_date": "2021-05-01",
+    #     "created_by": "Admin 1"
+
+    #   },
+    #     "clients": [324,325,326],
+    #     "options": [49,50,51]
+    # }
 
     # create contract with params: :start_date, :created_by, :client_id, :options
   end
