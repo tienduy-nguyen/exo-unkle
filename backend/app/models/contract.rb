@@ -19,6 +19,15 @@ class Contract < ApplicationRecord
 
   validate :end_date_is_after_start_date, if: :end_date_changed?
 
+  def self.update_status_contract
+    sql = "update users set status = 
+              case when status = 'pending' and start_date < now() then 'active'
+              case when status <> 'finished' and end_date < now() then 'finished'
+              else status end;
+          "
+    ActiveRecord::Base.connection.execute(sql)
+  end
+
   private
 
   def end_date_is_after_start_date
