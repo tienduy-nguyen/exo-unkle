@@ -1,7 +1,7 @@
 class Api::ContractsController < ApplicationController
   before_action :set_formation, only: [:show, :update, :destroy]
   before_action :authenticate_user!
-  before_action :check_admin, only: [:create, :update]
+  before_action :check_admin, except: [:show]
 
   # with pagination
   def index
@@ -12,36 +12,42 @@ class Api::ContractsController < ApplicationController
 
     if user_id
       sql = "select c.* from contracts c, client_contracts cl where c.id = cl.contract_id and cl.client_id = #{user_id}"
-      @formations = ActiveRecord::Base.connection.execute(sql)
-      @count = @formations.count
+      @contracts = ActiveRecord::Base.connection.execute(sql)
+      @count = @contracts.count
       if @count > limit
         offset = (page - 1) * limit
         sql = "select c.* from contracts c, client_contracts cl where c.id = cl.contract_id and cl.client_id = #{user_id} offset(#{offset}) limit(#{limit})"
-        @formations = ActiveRecord::Base.connection.execute(sql)
+        @contracts = ActiveRecord::Base.connection.execute(sql)
       end
-      return render json: { count: @count, formation: @formations }
+      return render json: { count: @count, formation: @contracts }
     end
 
     if option_id
       sql = "select c.* from contracts c, option_contracts op where c.id = op.contract_id and op.option_id = #{option_id}"
-      @formations = ActiveRecord::Base.connection.execute(sql)
-      @count = @formations.count
+      @contracts = ActiveRecord::Base.connection.execute(sql)
+      @count = @contracts.count
       if @count > limit
         offset = (page - 1) * limit
         sql = "select c.* from contracts c, option_contracts op where c.id = op.contract_id and op.option_id = #{option_id} offset(#{offset}) limit(#{limit})"
-        @formations = ActiveRecord::Base.connection.execute(sql)
+        @contracts = ActiveRecord::Base.connection.execute(sql)
       end
-      return render json: { count: @count, formation: @formations }
+      return render json: { count: @count, formation: @contracts }
     end
 
-    @formations = Contract.offset((page - 1) * limit).limit(limit)
+    @contracts = Contract.offset((page - 1) * limit).limit(limit)
     @count = Contract.count
-    # formation_json = ActiveModel::SerializableResource.new(@formations)
-    render json: { count: @count, formation: @formations }
+    # formation_json = ActiveModel::SerializableResource.new(@contracts)
+    render json: { count: @count, formation: @contracts }
   end
 
   def show
-    render json: @constract
+    if current_user.is_admin
+      return render json: @constract
+    end
+    # User is not admin
+    sql = "select c.* from contracts c, client_contracts cl where c.id = cl.contract_id and cl.client_id = #{current_user.id}"
+    @contracts = ActiveRecord::Base.connection.execute(sql)
+    render josn: @contracts
   end
 
   def create
