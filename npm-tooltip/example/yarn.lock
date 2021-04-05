@@ -1780,10 +1780,10 @@ table@^6.0.4:
     slice-ansi "^4.0.0"
     string-width "^4.2.0"
 
-td-react-tooltip@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/td-react-tooltip/-/td-react-tooltip-1.0.6.tgz#4208934a1598a7525e52b848ee388220a038a03e"
-  integrity sha512-KqV48yfe8hGIb6ZIOdw7sdTiHw/w9QJg2fwvNh6wq+iBw1BWZhvLNy4RW6RcENT9JjMYun8StphT0yV5cJFzNg==
+td-react-tooltip@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/td-react-tooltip/-/td-react-tooltip-1.0.7.tgz#e4a8bda9f81c09fb41d7119fa3b6203d73172ee6"
+  integrity sha512-sPwwvF4b175Vd4Bm+/7O3f1WnwRkwbxI68gvDwdjh256sFR4YVs+O6I8tZS5IkAQDIlUiE8QIaaO2WcbuetZrQ==
 
 text-table@^0.2.0:
   version "0.2.0"

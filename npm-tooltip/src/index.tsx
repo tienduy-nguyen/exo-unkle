@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { pseudoTooltip } from './PseudoTooltip';
 import './style.scss';
 
 interface TooltipProps {
@@ -12,7 +13,7 @@ interface TooltipProps {
 export const Tooltip: React.FC<TooltipProps> = ({
   content,
   direction = 'right',
-  delay = 200,
+  delay = 0,
   background = '#333',
   color = '#fff',
   fontSize = '1rem',
@@ -23,26 +24,19 @@ export const Tooltip: React.FC<TooltipProps> = ({
   const showTip = () => {
     setTimeout(() => {
       setShow(true);
-    }, delay || 0);
+    }, delay);
   };
 
   const hitTip = () => {
     setTimeout(() => {
       setShow(false);
-    }, delay || 0);
+    }, delay);
   };
 
-  const pseudoTooltip = (
-    background: string,
-    position: 'left' | 'right' | 'top' | 'bottom'
-  ) => {
-    return (
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `.tooltip-tip.${position}:before { border-${position}-color: ${background};}'`,
-        }}
-      ></style>
-    );
+  const style = {
+    background: `${background}`,
+    color: `${color}`,
+    fontSize: `${fontSize}`,
   };
 
   return (
@@ -56,14 +50,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
         <>
           {/* pseudo */}
           {pseudoTooltip(background, direction)}
-          <div
-            className={`tooltip-tip ${direction}`}
-            style={{
-              background: `${background}`,
-              color: `${color}`,
-              fontSize: `${fontSize}`,
-            }}
-          >
+          <div className={`tooltip-tip ${direction}`} style={style}>
             {content}
           </div>
         </>
