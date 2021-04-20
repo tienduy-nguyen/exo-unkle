@@ -1,5 +1,5 @@
 class Api::ContractsController < ApplicationController
-  before_action :set_formation, only: [:show, :update, :destroy]
+  before_action :set_contract, only: [:show, :update, :destroy]
   before_action :authenticate_user!
   before_action :check_admin, except: [:show]
 
@@ -42,12 +42,16 @@ class Api::ContractsController < ApplicationController
 
   def show
     if current_user.is_admin
-      return render json: @constract
+      return render json: @contract
     end
-    # User is not admin
-    sql = "select c.* from contracts c, client_contracts cl where c.id = cl.contract_id and cl.client_id = #{current_user.id}"
-    @contracts = ActiveRecord::Base.connection.execute(sql)
-    render josn: @contracts
+
+    # If user is not admin
+    client_contract = ClientContract.find_by(client_id: current_user.id, contract_id: params[:id])
+    puts client_contract
+    if client_contract
+      return render json: @contracts
+    end
+    render json: { error: "UnAuthorized", status: 401 }, status: 401
   end
 
   def create

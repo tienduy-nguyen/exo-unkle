@@ -8,7 +8,7 @@ class Api::UsersController < Api::BaseController
   def index
     limit = params[:limit].to_i > 0 ? params[:limit].to_i : 25
     page = params[:p].to_i > 0 ? params[:p].to_i : 1
-    contract_id = param[:contract_id]
+    contract_id = params[:contract_id]
     if contract_id
       @users = Contract.find(contract_id).clients
       @count = @users.length

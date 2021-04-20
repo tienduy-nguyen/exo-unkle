@@ -172,11 +172,11 @@ With that token, you can copy and add it at the request header of other routes t
   - GET `/api/contracts/:id/options`: get insurance options from contracts
 
 - Admin & client
-  - GET `/api/auth/me`: get current user info
   - GEt `/api/contracts/:id`: with id = id of current user
   - DELETE `/api/contracts/:id`: delete my contract with id = id of current user
 
 - Public route: home page `/`
+  - GET `/api/auth/me`: get current user info
 
 ### Params for request
 
